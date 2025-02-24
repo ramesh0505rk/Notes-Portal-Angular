@@ -16,7 +16,7 @@ import { config } from '../okta-config';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
-  errorMessage: string = '';
+  errorMessage: string = ''
   passwordVisible: boolean = false;
 
   constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private router: Router) {

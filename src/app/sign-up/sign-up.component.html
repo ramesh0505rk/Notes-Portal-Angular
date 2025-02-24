@@ -8,30 +8,43 @@
   <h2 class="m-logo">Notes</h2>
   <h5>Sign up to Notes</h5>
   <div class="ic d-flex flex-column align-items-center justify-content-center">
-    <div class="btn-container d-flex flex-column justify-content-center align-items-center">
+    <form [formGroup]="loginForm" class="btn-container d-flex flex-column justify-content-center align-items-center">
       <div class="d-flex flex-column fname-container">
         <label for="firstName">First name</label>
-        <input type="text" id="i-fname" class="fname" [(ngModel)]="firstName" placeholder="First Name" name="firstName"
-          required />
+        <input type="text" id="i-fname" class="fname" formControlName="firstname" placeholder="First Name"
+          name="firstName" required />
+        <div *ngIf="loginForm.get('firstname')?.invalid && loginForm.get('firstname')?.touched" class="error d-flex">
+          <small>❗Enter a valid first name.</small>
+        </div>
       </div>
       <div class="d-flex flex-column lname-container">
         <label for="lastName">Last name</label>
-        <input type="text" id="i-lname" class="lname" [(ngModel)]="lastName" placeholder="Last Name" name="lastName"
+        <input type="text" id="i-lname" class="lname" formControlName="lastname" placeholder="Last Name" name="lastName"
           required />
+          <div *ngIf="loginForm.get('lastname')?.invalid && loginForm.get('lastname')?.touched" class="error d-flex">
+            <small>❗Enter a valid last name.</small>
+          </div>
       </div>
       <div class="d-flex flex-column email-container">
         <label for="email">Email</label>
-        <input type="email" id="i-email" class="email" [(ngModel)]="email" placeholder="Email" name="email" required />
+        <input type="email" id="i-email" class="email" formControlName="email" placeholder="Email" name="email"
+          required />
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error d-flex">
+            <small>❗Enter a valid email.</small>
+          </div>
       </div>
       <div class="d-flex flex-column password-container">
         <label for="password">Password</label>
         <div class="password-wrapper">
-          <input [type]="passwordVisible?'text':'password'" id="i-password" class="password" [(ngModel)]="password"
+          <input [type]="passwordVisible?'text':'password'" id="i-password" class="password" formControlName="password"
             placeholder="Password" name="password" required />
           <span class="eye-icon" (click)="togglePasswordVisibility()">
             <img *ngIf="!passwordVisible" src="assets/eye-off.svg" alt="Show Password" />
             <img *ngIf="passwordVisible" src="assets/eye-on.svg" alt="Hide Password" />
           </span>
+        </div>
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error d-flex">
+          <small>❗Password must be at least 6 characters long.</small>
         </div>
       </div>
       <div class="signup-container">
@@ -41,6 +54,9 @@
         <span>Already have an account?</span>
         <a (click)="onSignIn()" class="signin-btn"><b>Sign in</b></a>
       </div>
+    </form>
+    <div *ngIf="errorMessage" class="error">
+      <small>{{ errorMessage }}</small>
     </div>
   </div>
   <!-- <p *ngIf="errorMessage">{{ errorMessage }}</p> -->
