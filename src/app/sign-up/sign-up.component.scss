@@ -1,0 +1,123 @@
+@import '../scss_Variables/scss_variables.scss';
+
+.login-form {
+    position: relative;
+    color: $font-color;
+    height: 100vh;
+    background-color: $primary-bg-color;
+    margin-top: 0px;
+    font-family: 'Quicksand';
+}
+
+.dark-mode-container {
+    position: absolute;
+    top: 0;
+    margin-top: 3px;
+    gap: 10px;
+}
+
+.m-logo {
+    font-family: 'Lobster';
+    color: $font-color;
+    margin: 0;
+}
+
+.ic {
+    width: 25%;
+    padding: 20px 20px;
+    background: $widget-color;
+    opacity: 0.8;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0 2px rgba(255, 230, 230);
+}
+
+.btn-container {
+    width: 100%;
+    gap: 4px;
+}
+
+#i-email,
+#i-password,
+#i-fname,
+#i-lname {
+    background-color: $i-bg;
+    color: $font-color;
+    border-radius: 4px;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    box-shadow: 0 0 0px 2px transparent;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#i-email:focus,
+#i-password:focus,
+#i-fname:focus,
+#i-lname:focus {
+    box-shadow: 0 0 0px 2px $i-focus;
+}
+
+.email-container,
+.password-container,
+.fname-container,
+.lname-container {
+    width: 100%;
+}
+
+.signup-container {
+    width: 100%;
+}
+
+.signup-btn {
+    background: $btn-bg;
+    color: $font-color;
+    width: 100%;
+    border: none;
+    padding: 8px 0px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.signup-btn:hover {
+    background: $btn-bg-hover;
+}
+
+.signin-container {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.signin-btn {
+    cursor: pointer;
+    color: #4285f4;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+#i-password {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.eye-icon {
+    position: absolute;
+    top: 20%;
+    right: 10px;
+    cursor: pointer;
+}
+
+.eye-icon img {
+    width: 20px;
+    height: 20px;
+    color: $eye-color;
+}
