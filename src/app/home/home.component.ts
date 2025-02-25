@@ -2,11 +2,12 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { OKTA_AUTH } from '@okta/okta-angular';
 import OktaAuth from '@okta/okta-auth-js';
 import { config } from '../okta-config';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [SearchComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
