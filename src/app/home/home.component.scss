@@ -2,9 +2,27 @@
 
 .home-container {
     height: 100vh;
+    overflow: hidden;
     margin-top: 0px;
     background-color: $primary-bg-color;
     color: $font-color;
     font-family: 'Quicksand';
-    
+}
+
+.m-logo{
+    font-family: 'Lobster';
+    color: $font-color;
+    margin: 0;
+}
+
+.navs{
+    width: 100%;
+    margin-top: 5px;
+    padding: 0px 5px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-container{
+    width: 50%;
 }

@@ -1,5 +1,12 @@
 <div class="home-container">
-    <app-search></app-search>
+    <div class="navs d-flex flex-row">
+        <span class="logo-container">
+            <h2 class="m-logo">Notes</h2>
+        </span>
+        <div class="search-container">
+            <app-search></app-search>
+        </div>
+    </div>
     <p>Welcome to home page! {{userName}} 😎</p>
     <button (click)="logOut()">Logout</button>
     <p>home works!</p>
