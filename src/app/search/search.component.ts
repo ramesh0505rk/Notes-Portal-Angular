@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, output } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class SearchComponent {
 
+  @Output() isSearchOnClick = new EventEmitter<boolean>()
+
+  onSearchClick() {
+    this.isSearchOnClick.emit(true)
+    console.log(true)
+  }
 }

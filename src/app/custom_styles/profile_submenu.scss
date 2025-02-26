@@ -9,13 +9,13 @@
 
 .navs ul a {
     text-decoration: none;
-    color: #A1A2A3;
     font-weight: 600;
     display: inline-block;
     padding: 1rem 0;
 }
 
 .has-submenu ul a {
+    color: #A1A2A3;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -44,10 +44,6 @@
 
 .has-submenu ul a:hover::after {
     opacity: 1;
-}
-
-.navs ul a {
-    transition-property: color;
 }
 
 .has-submenu::after {
