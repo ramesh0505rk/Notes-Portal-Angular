@@ -1,4 +1,5 @@
 @import '../scss_Variables/scss_variables.scss';
+@import '../custom_styles/profile_submenu.scss';
 
 .home-container {
     height: 100vh;
@@ -44,106 +45,7 @@
     }
 }
 
-.has-submenu{
-    height: 100%;
-    background-color: yellow;
-}
-
 .profile {
     font-size: 25px;
     font-weight: 500;
-}
-
-.has-submenu:hover ul {
-    display: block;
-}
-
-.navs{
-    position: relative;
-}
-
-.navs ul a {
-    text-decoration: none;
-    color: #A1A2A3;
-    display: inline-block;
-    padding: 1.5rem 0;
-}
-
-.has-submenu ul {
-    list-style: none;
-    position: absolute;
-    top: 100%;
-    right: 2rem;
-    background-color: #212224;
-    border-radius: .5rem;
-    padding: .5rem;
-    display: none;
-}
-
-.has-submenu ul a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    min-width: 15rem;
-    border-radius: .5rem;
-}
-
-.has-submenu ul a::after {
-    content: ''; /* Remove the URL content */
-    display: inline-block;
-    width: 17px;
-    height: 17px;
-    background-image: url('/assets/right-arrow.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0;
-}
-
-.has-submenu ul a:hover {
-    background-color: #2C2D2F;
-    padding: 1rem 1.5rem;
-}
-
-.has-submenu ul a:hover::after {
-    opacity: 1;
-}
-
-nav ul a{
-    transition-property: color;
-}
-
-.has-submenu::after{
-    transition-property: opacity;
-}
-
-.has-submenu ul{
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-1rem);
-    transition-property: opacity,visibility,transform;
-}
-
-.has-submenu:hover ul{
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0);
-}
-
-.has-submenu ul a{
-    transition-property: padding,background-color;
-}
-
-.has-submenu ul a::after{
-    transition-property: opacity;
-}
-
-nav ul a,
-.has-submenu::after,
-.has-submenu ul,
-.has-submenu ul a,
-.has-submenu ul a::after{
-    transition-duration: var(--def-transition-duration);
-    transition-timing-function: ease-in-out;
 }

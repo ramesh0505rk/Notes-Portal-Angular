@@ -1,0 +1,92 @@
+@import '../scss_Variables/scss_variables.scss';
+
+.has-submenu {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+
+.navs ul a {
+    text-decoration: none;
+    color: #A1A2A3;
+    display: inline-block;
+    padding: 1.5rem 0;
+}
+
+.has-submenu ul a {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    min-width: 15rem;
+    border-radius: .5rem;
+}
+
+.has-submenu ul a::after {
+    content: "";
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background-image: url('/assets/arrow_right.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+}
+
+.has-submenu ul a:hover {
+    background-color: $sm-li-bg;
+    padding: 1rem 1.5rem;
+    color: $font-color;
+}
+
+.has-submenu ul a:hover::after {
+    opacity: 1;
+}
+
+.navs ul a {
+    transition-property: color;
+}
+
+.has-submenu::after {
+    transition-property: opacity;
+}
+
+.has-submenu ul {
+    list-style: none;
+    position: absolute;
+    top: 95%;
+    right: 1.5rem;
+    background-color: $sm-bg;
+    border-radius: .5rem;
+    padding: .5rem;
+
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-2rem);
+    transition-property: opacity, visibility, transform;
+}
+
+.has-submenu:hover ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(2rem);
+}
+
+.has-submenu ul a {
+    transition-property: padding, color, background-color;
+}
+
+.has-submenu ul a::after {
+    transition-property: opacity;
+}
+
+.navs ul a,
+.has-submenu ul,
+.has-submenu ul a,
+.has-submenu ul a::after {
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
