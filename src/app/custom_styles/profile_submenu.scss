@@ -10,8 +10,9 @@
 .navs ul a {
     text-decoration: none;
     color: #A1A2A3;
+    font-weight: 600;
     display: inline-block;
-    padding: 1.5rem 0;
+    padding: 1rem 0;
 }
 
 .has-submenu ul a {
@@ -19,8 +20,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    min-width: 15rem;
+    padding: .5rem;
+    min-width: 10rem;
     border-radius: .5rem;
 }
 
@@ -37,7 +38,7 @@
 
 .has-submenu ul a:hover {
     background-color: $sm-li-bg;
-    padding: 1rem 1.5rem;
+    padding: .5rem 1rem;
     color: $font-color;
 }
 
@@ -56,7 +57,7 @@
 .has-submenu ul {
     list-style: none;
     position: absolute;
-    top: 95%;
+    top: 98%;
     right: 1.5rem;
     background-color: $sm-bg;
     border-radius: .5rem;

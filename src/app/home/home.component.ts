@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
 
   async logOut() {
     localStorage.clear()
+    sessionStorage.clear()
     this.oktaAuth.signOut()
   }
 
