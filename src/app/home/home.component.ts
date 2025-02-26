@@ -3,6 +3,7 @@ import { OKTA_AUTH } from '@okta/okta-angular';
 import OktaAuth from '@okta/okta-auth-js';
 import { config } from '../okta-config';
 import { SearchComponent } from '../search/search.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +16,16 @@ export class HomeComponent implements OnInit {
 
   isAuthenticated: boolean = false
   userName: string = ''
+  profileImg: string = ''
 
-  constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth) { }
+  constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router) { }
 
   async ngOnInit() {
     this.isAuthenticated = await this.oktaAuth.isAuthenticated()
     if (this.isAuthenticated) {
       let user = await this.oktaAuth.getUser()
       this.userName = user.name ?? ''
+      this.profileImg = this.userName[0].toLowerCase()
     }
     console.log(config.clientId)
   }
@@ -30,5 +33,9 @@ export class HomeComponent implements OnInit {
   async logOut() {
     localStorage.clear()
     this.oktaAuth.signOut()
+  }
+
+  onLogoClick() {
+    window.location.reload()
   }
 }
