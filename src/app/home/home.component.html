@@ -1,12 +1,10 @@
-<div class="home-container">
+<div class="home-container" (click)="closeSuggestions($event)">
     <div class="navs d-flex flex-row">
         <span class="logo-container">
-            <h2 (click)="onLogoClick()" class="m-logo">Notes</h2>
+            <h2 (click)="onLogoClick()" class="m-logo">Notes.</h2>
         </span>
-        <div class="search-container">
+        <div class="search-container" (click)="$event.stopPropagation()">
             <app-search (isSearchOnClick)="canShowSuggestion($event)"></app-search>
-            <div class="suggestions-container" *ngIf="showSuggestions">
-            </div>
         </div>
         <div class="has-submenu">
             <div class="profile-container d-flex">
@@ -14,11 +12,13 @@
                 <ul>
                     <li><a>Profile</a></li>
                     <li><a href="#">Help</a></li>
-                    <li><a (click)="logOut()" href="#">Sign out</a></li>
+                    <li><a (click)="logOut()">Sign out</a></li>
                 </ul>
             </div>
         </div>
+        <div class="suggestions-container" [ngClass]="{'show': showSuggestions}" (click)="$event.stopPropagation()">
+        </div>
     </div>
+    <div *ngIf="showSuggestions" class="overlay"></div>
     <p>Welcome to home page! {{userName}} 😎</p>
-    <p>home works!</p>
 </div>

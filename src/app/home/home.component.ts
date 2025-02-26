@@ -46,4 +46,7 @@ export class HomeComponent implements OnInit {
     this.showSuggestions = value
     console.log(this.showSuggestions)
   }
+  closeSuggestions(event: Event) {
+    this.showSuggestions = false
+  }
 }

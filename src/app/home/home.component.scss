@@ -10,6 +10,7 @@
     font-family: 'Quicksand';
 }
 
+
 .m-logo {
     cursor: pointer;
     font-family: 'Lobster';
@@ -18,15 +19,16 @@
 }
 
 .navs {
+    position: relative;
     width: 100%;
-    margin-top: 10px;
-    padding: 0px 25px;
+    margin-top: 12px;
+    padding: 0px 30px;
     justify-content: space-between;
     align-items: center;
+    z-index: 10;
 }
 
 .search-container {
-    position: relative;
     width: 50%;
 }
 
@@ -52,15 +54,34 @@
 }
 
 .suggestions-container {
-    inset: 0;
     position: absolute;
-    top: 50%;
+    inset: 0;
+    margin: 0 18px;
+    height: 22rem;
+    background-color: #EDEDED;
+    border-radius: 8px;
+    box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-2rem);
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-0.3rem);
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 50px;
-    background-color: #f52121;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    margin-top: 10px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 9;
 }
