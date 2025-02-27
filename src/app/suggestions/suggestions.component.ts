@@ -15,7 +15,6 @@ export class SuggestionsComponent {
   get filteredSuggestions(): string[] {
     return this.suggestions.filter(suggestion => {
       const match = suggestion.toLowerCase().includes(this.searchTerm.toLocaleLowerCase())
-      // console.log(suggestion.toLowerCase().includes(this.searchTerm.toLocaleLowerCase()) + 'ramz')
       return match
     })
   }
