@@ -1,6 +1,11 @@
 @import '../scss_Variables/scss_variables.scss';
 @import '../custom_styles/profile_submenu.scss';
 
+.logo-container{
+    width: 6%;
+    // background-color: rebeccapurple;
+}
+
 .home-container {
     height: 100vh;
     overflow: hidden;

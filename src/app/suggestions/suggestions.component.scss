@@ -1,14 +1,15 @@
 .suggestions-box {
     position: absolute;
-    left: 51%;
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 8px;
-    padding: 10px;
+    padding: 6px;
     width: 50%;
     max-height: 250px;
     overflow-y: auto;
     scrollbar-width: none;
+    // background-color: yellow;
 
     ul {
         list-style: none;
@@ -17,13 +18,14 @@
         display: flex;
         flex-direction: column;
         align-items: start;
+        // background-color: rebeccapurple;
     }
 
     li {
         padding: 8px;
         cursor: pointer;
         border-radius: 0.5rem;
-        transition: background 0.2s;
+        // transition: background 0.2s;
         width: 100%;
 
         &:hover {
