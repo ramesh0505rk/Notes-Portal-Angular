@@ -6,7 +6,7 @@
         <div class="search-container" (click)="$event.stopPropagation()">
             <app-search (isSearchOnClick)="canShowSuggestion($event)"></app-search>
         </div>
-        <div class="has-submenu">
+        <div class="has-submenu" (click)="$event.stopPropagation()">
             <div class="profile-container d-flex">
                 <span class="profile">{{profileImg}}</span>
                 <ul>
