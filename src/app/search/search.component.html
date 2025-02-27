@@ -2,5 +2,6 @@
     <span class="search-icon">
         <img src="assets/search.svg">
     </span>
-    <input type="text" placeholder="Search by notes" (click)="onSearchClick()" class="search-input" />
+    <input type="text" placeholder="Search by notes" [(ngModel)]="searchQuery" (input)="onSearchChange()"
+        (click)="onSearchClick()" class="search-input" />
 </div>

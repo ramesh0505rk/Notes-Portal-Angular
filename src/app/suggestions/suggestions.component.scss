@@ -1,0 +1,38 @@
+.suggestions-box {
+    position: absolute;
+    left: 51%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    padding: 10px;
+    width: 50%;
+    max-height: 250px;
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    li {
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        transition: background 0.2s;
+        width: 100%;
+
+        &:hover {
+            background-color: white;
+        }
+    }
+}
+
+.suggestions-container::-webkit-scrollbar {
+    display: none;
+    /* For Chrome, Safari, and Opera */
+}

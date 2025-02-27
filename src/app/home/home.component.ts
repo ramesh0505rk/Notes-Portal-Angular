@@ -6,11 +6,12 @@ import { SearchComponent } from '../search/search.component';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SuggestionsComponent } from "../suggestions/suggestions.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SearchComponent, CommonModule, FormsModule],
+  imports: [SearchComponent, CommonModule, FormsModule, SuggestionsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   userName: string = ''
   profileImg: string = ''
   showSuggestions: boolean = false
+  searchQuery: string = ''
 
   constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router) { }
 
@@ -48,5 +50,9 @@ export class HomeComponent implements OnInit {
   }
   closeSuggestions(event: Event) {
     this.showSuggestions = false
+  }
+  updateSearchQuery(query: string) {
+    this.searchQuery = query;
+    this.showSuggestions = query.length > 0;
   }
 }

@@ -4,7 +4,8 @@
             <h2 (click)="onLogoClick()" class="m-logo">Notes.</h2>
         </span>
         <div class="search-container" (click)="$event.stopPropagation()">
-            <app-search (isSearchOnClick)="canShowSuggestion($event)"></app-search>
+            <app-search (searchChange)="updateSearchQuery($event)"
+                (isSearchOnClick)="canShowSuggestion($event)"></app-search>
         </div>
         <div class="has-submenu" (click)="$event.stopPropagation()">
             <div class="profile-container d-flex">
@@ -17,6 +18,7 @@
             </div>
         </div>
         <div class="suggestions-container" [ngClass]="{'show': showSuggestions}" (click)="$event.stopPropagation()">
+            <app-suggestions [searchTerm]="searchQuery"></app-suggestions>
         </div>
     </div>
     <div *ngIf="showSuggestions" class="overlay"></div>
