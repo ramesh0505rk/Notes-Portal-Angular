@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
 
   isAuthenticated: boolean = false
   userName: string = ''
+  userId: string = ''
+  userEmail: string = ''
   profileImg: string = ''
   showSuggestions: boolean = false
   searchQuery: string = ''
@@ -30,9 +32,11 @@ export class HomeComponent implements OnInit {
     if (this.isAuthenticated) {
       let user = await this.oktaAuth.getUser()
       this.userName = user.name ?? ''
+      this.userEmail = user.email ?? ''
+      this.userId = user.sub ?? ''
       this.profileImg = this.userName[0].toLowerCase()
+      console.log(config.clientId, ' ', this.userEmail, ' ', this.userId)
     }
-    console.log(config.clientId)
   }
 
   async logOut() {
