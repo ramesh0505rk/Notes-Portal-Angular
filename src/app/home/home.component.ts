@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SuggestionsComponent } from "../suggestions/suggestions.component";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -24,8 +25,9 @@ export class HomeComponent implements OnInit {
   profileImg: string = ''
   showSuggestions: boolean = false
   searchQuery: string = ''
+  apiBaseUrl = 'https://localhost:44354/api'
 
-  constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router) { }
+  constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router, private http: HttpClient) { }
 
   async ngOnInit() {
     this.isAuthenticated = await this.oktaAuth.isAuthenticated()
@@ -35,7 +37,16 @@ export class HomeComponent implements OnInit {
       this.userEmail = user.email ?? ''
       this.userId = user.sub ?? ''
       this.profileImg = this.userName[0].toLowerCase()
-      console.log(config.clientId, ' ', this.userEmail, ' ', this.userId)
+      console.log(config.clientId, ' ', this.userEmail, ' ', this.userId, ' ', this.userName)
+
+      const token = await this.oktaAuth.getAccessToken()
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
+
+      //verify authorization of the user
+      this.http.get(`${this.apiBaseUrl}/auth/verify`, { headers }).subscribe({
+        next: (response) => console.log(response)
+      })
+
     }
   }
 
