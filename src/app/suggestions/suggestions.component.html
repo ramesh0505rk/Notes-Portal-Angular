@@ -1,8 +1,10 @@
-<div class="suggestions-box" *ngIf="filteredSuggestions.length">
-    <ul>
-      <li *ngFor="let suggestion of filteredSuggestions">
-        {{ suggestion }}
-      </li>
-    </ul>
-  </div>
-  
+<div class="suggestions-box">
+  <ul *ngIf="filteredSuggestions.length > 0; else noResults">
+    <li *ngFor="let suggestion of filteredSuggestions">
+      {{ suggestion }}
+    </li>
+  </ul>
+  <ng-template #noResults>
+    <p class="no-results">Oops! No result matched</p>
+  </ng-template>
+</div>

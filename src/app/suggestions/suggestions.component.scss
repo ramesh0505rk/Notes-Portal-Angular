@@ -34,3 +34,10 @@
 .suggestions-container::-webkit-scrollbar {
     display: none;
 }
+
+.no-results {
+    text-align: center;
+    color: gray;
+    font-style: italic;
+    padding: 10px;
+}
