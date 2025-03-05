@@ -1,12 +1,13 @@
 @import '../scss_Variables/scss_variables.scss';
 @import '../custom_styles/profile_submenu.scss';
 
-.logo-container{
+.logo-container {
     width: 6%;
     // background-color: rebeccapurple;
 }
 
 .home-container {
+    position: relative;
     height: 100vh;
     overflow: hidden;
     margin-top: 0px;
@@ -89,4 +90,26 @@
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     z-index: 9;
+}
+
+.write-icon {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background-color: $sm-li-bg;
+    border-radius: 50px;
+    padding: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+
+    transition: padding ease-in-out 0.3s;
+
+    &:hover {
+        padding: 15px;
+    }
+}
+
+.write-icon img {
+    width: 40px;
+    height: 40px;
 }
