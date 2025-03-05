@@ -44,10 +44,18 @@ export class HomeComponent implements OnInit {
 
       //verify authorization of the user
       this.http.get(`${this.apiBaseUrl}/auth/verify`, { headers }).subscribe({
-        next: (response) => console.log(response)
+        next: () => this.checkUserExists(headers),
+        error:(err)=>{
+          console.error('Unauthorized: ',err)
+        }
       })
-
     }
+  }
+
+  checkUserExists(headers:HttpHeaders){
+    this.http.get(`${this.apiBaseUrl}/users/${this.userId}`,{headers}).subscribe({
+      next:(res)=>console.log(res)
+    })
   }
 
   async logOut() {
