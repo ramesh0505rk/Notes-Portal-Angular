@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   showSuggestions: boolean = false
   searchQuery: string = ''
   apiBaseUrl = 'https://localhost:44354/api'
+  notes: any[] = []
 
   constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router, private http: HttpClient) { }
 
@@ -45,16 +46,44 @@ export class HomeComponent implements OnInit {
       //verify authorization of the user
       this.http.get(`${this.apiBaseUrl}/auth/verify`, { headers }).subscribe({
         next: () => this.checkUserExists(headers),
-        error:(err)=>{
-          console.error('Unauthorized: ',err)
+        error: (err) => {
+          console.error('Unauthorized: ', err)
         }
       })
     }
   }
 
-  checkUserExists(headers:HttpHeaders){
-    this.http.get(`${this.apiBaseUrl}/users/${this.userId}`,{headers}).subscribe({
-      next:(res)=>console.log(res)
+  checkUserExists(headers: HttpHeaders) {
+    this.http.get(`${this.apiBaseUrl}/users/${this.userId}`, { headers }).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.fetchUserNotes(headers)
+      },
+      error: () => this.createUser(headers)
+    })
+  }
+
+  createUser(headers: HttpHeaders) {
+
+    const userPayload = {
+      UserId: this.userId,
+      UserName: this.userName,
+      UserEmail: this.userEmail
+    }
+
+    this.http.post(`${this.apiBaseUrl}/users/create`, userPayload, { headers }).subscribe({
+      next: () => this.fetchUserNotes(headers),
+      error: (err) => console.error("Error creating user: ", err)
+    })
+  }
+
+  fetchUserNotes(headers: HttpHeaders) {
+    this.http.get(`${this.apiBaseUrl}/notes/${this.userId}`, { headers }).subscribe({
+      next: (notes: any) => {
+        this.notes = notes ? notes : []
+        console.log(this.notes)
+      },
+      error: (err) => console.error('Error fetching notes: ', err)
     })
   }
 
@@ -69,7 +98,6 @@ export class HomeComponent implements OnInit {
   }
   canShowSuggestion(value: boolean) {
     this.showSuggestions = value
-    console.log(this.showSuggestions)
   }
   closeSuggestions(event: Event) {
     this.showSuggestions = false
