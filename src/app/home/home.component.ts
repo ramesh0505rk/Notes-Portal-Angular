@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SuggestionsComponent } from "../suggestions/suggestions.component";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AddNoteComponent } from '../add-note/add-note.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SearchComponent, CommonModule, FormsModule, SuggestionsComponent],
+  imports: [SearchComponent, CommonModule, FormsModule, SuggestionsComponent, AddNoteComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
   searchQuery: string = ''
   apiBaseUrl = 'https://localhost:44354/api'
   notes: any[] = []
+  showAddNoteComponent: boolean = false
 
   constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router, private http: HttpClient) { }
 
@@ -105,5 +107,9 @@ export class HomeComponent implements OnInit {
   updateSearchQuery(query: string) {
     this.searchQuery = query;
     this.showSuggestions = query.length > 0;
+  }
+
+  onAddNoteClick() {
+    this.showAddNoteComponent = true
   }
 }

@@ -1,4 +1,5 @@
 <div class="home-container" (click)="closeSuggestions($event)">
+    <app-add-note class="add-note-container" *ngIf="showAddNoteComponent"></app-add-note>
     <div class="navs d-flex flex-row">
         <span class="logo-container">
             <h2 (click)="onLogoClick()" class="m-logo">Notes.</h2>
@@ -23,7 +24,7 @@
     </div>
     <div *ngIf="showSuggestions" class="overlay"></div>
     <p>Welcome to home page! {{userName}} 😎</p>
-    <span class="write-icon d-flex">
+    <span (click)="onAddNoteClick()" class="write-icon d-flex">
         <img src="assets/write.svg" />
     </span>
 </div>
