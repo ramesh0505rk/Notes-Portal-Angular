@@ -1,10 +1,18 @@
+@import '../scss_Variables/scss_variables.scss';
+
 .add-note-container {
     position: relative;
     width: 100%;
     height: 100%;
     padding: 25px;
-    background-color: white;
+    background-color: $i-bg;
     border-radius: 15px;
+    display: flex;
+}
+
+.form-container{
+    width: 100%;
+    gap: 10px;
 }
 
 .close-icon {
@@ -15,7 +23,30 @@
     cursor: pointer;
     display: flex;
 }
-.close-icon img{
+
+.close-icon img {
     width: 25px;
     height: 25px;
+}
+
+#i-title,
+#i-content {
+    background-color: white;
+    color: $font-color;
+    border-radius: 4px;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    box-shadow: 0 0 0px 2px rgb(222, 220, 220);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#i-title:focus,
+#i-content:focus {
+    box-shadow: 0 0 0px 2px $i-focus;
+}
+
+#i-content{
+    height: 60%;
 }
