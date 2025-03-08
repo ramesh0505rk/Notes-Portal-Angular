@@ -22,6 +22,7 @@
     height: 50%;
     top: 25%;
     right: 25%;
+    z-index: 12;
 }
 
 .m-logo {
@@ -97,6 +98,10 @@
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     z-index: 9;
+}
+
+.overlayIndexUpdate{
+    z-index: 11;
 }
 
 .write-icon {

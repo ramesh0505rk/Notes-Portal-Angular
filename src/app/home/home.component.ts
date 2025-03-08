@@ -112,4 +112,7 @@ export class HomeComponent implements OnInit {
   onAddNoteClick() {
     this.showAddNoteComponent = true
   }
+  onAddNoteClose(value: Boolean) {
+    this.showAddNoteComponent = false
+  }
 }

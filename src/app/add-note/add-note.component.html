@@ -1,5 +1,8 @@
 <div class="add-note-container">
-    <form class="form-container d-flex flex-column" >
+    <span (click)="onClose()" class="close-icon">
+        <img src="assets/x-close.svg" />
+    </span>
+    <form class="form-container d-flex flex-column">
         <label>Title</label>
         <input type="text" placeholder="Enter a title" />
         <label>Conetent</label>

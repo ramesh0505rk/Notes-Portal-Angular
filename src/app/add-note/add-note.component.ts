@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-note',
@@ -8,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './add-note.component.scss'
 })
 export class AddNoteComponent {
-
+  @Output() closeAddNote = new EventEmitter<Boolean>()
+  onClose() {
+    this.closeAddNote.emit(true)
+  }
 }
