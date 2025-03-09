@@ -1,5 +1,6 @@
 <div class="home-container" (click)="closeSuggestions($event)">
-    <app-add-note class="add-note-container" (closeAddNote)="onAddNoteClose($event)" *ngIf="showAddNoteComponent"></app-add-note>
+    <app-add-note class="add-note-container" (closeAddNote)="onAddNoteClose($event)"
+        *ngIf="showAddNoteComponent"></app-add-note>
     <div class="navs d-flex flex-row">
         <span class="logo-container">
             <h2 (click)="onLogoClick()" class="m-logo">Notes.</h2>
@@ -22,8 +23,20 @@
             <app-suggestions [searchTerm]="searchQuery"></app-suggestions>
         </div>
     </div>
-    <div *ngIf="showSuggestions || showAddNoteComponent" [ngClass]="{'overlayIndexUpdate':showAddNoteComponent}" class="overlay"></div>
-    <p>Welcome to home page! {{userName}} 😎</p>
+    <div *ngIf="showSuggestions || showAddNoteComponent" [ngClass]="{'overlayIndexUpdate':showAddNoteComponent}"
+        class="overlay"></div>
+    <div class="notes-container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let note of notes">
+                <div class="note-card">
+                    <div class="note-card-inner" >
+                        <h4>{{ note.title }}</h4>
+                        <p>{{ note.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <span (click)="onAddNoteClick()" class="write-icon d-flex">
         <img src="assets/write.svg" />
     </span>

@@ -4,8 +4,11 @@
     </span>
     <form class="form-container d-flex flex-column">
         <label>Title</label>
-        <input id="i-title" type="text" placeholder="Enter a title" />
+        <input id="i-title" type="text" placeholder="Enter a title for your note." />
         <label>Conetent</label>
-        <textarea style="resize: none;" id="i-content" placeholder="Write down your content here.."></textarea>
+        <textarea style="resize: none;" id="i-content" placeholder="Write down your note content here."></textarea>
+        <div (click)="onSaveNote()" class="btn-container d-flex">
+            <span class="save-btn">Save</span>
+        </div>
     </form>
 </div>

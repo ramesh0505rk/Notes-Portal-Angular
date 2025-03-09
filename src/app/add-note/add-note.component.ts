@@ -12,4 +12,7 @@ export class AddNoteComponent {
   onClose() {
     this.closeAddNote.emit(true)
   }
+  onSaveNote() {
+
+  }
 }
