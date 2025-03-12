@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit {
 
   constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router, private http: HttpClient) { }
 
+  headers: any
+
   async ngOnInit() {
     this.isAuthenticated = await this.oktaAuth.isAuthenticated()
     if (this.isAuthenticated) {
@@ -43,11 +45,11 @@ export class HomeComponent implements OnInit {
       console.log(config.clientId, ' ', this.userEmail, ' ', this.userId, ' ', this.userName)
 
       const token = await this.oktaAuth.getAccessToken()
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
+      this.headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
 
       //verify authorization of the user
-      this.http.get(`${this.apiBaseUrl}/auth/verify`, { headers }).subscribe({
-        next: () => this.checkUserExists(headers),
+      this.http.get(`${this.apiBaseUrl}/auth/verify`, { headers: this.headers }).subscribe({
+        next: () => this.checkUserExists(this.headers),
         error: (err) => {
           console.error('Unauthorized: ', err)
         }
@@ -114,5 +116,9 @@ export class HomeComponent implements OnInit {
   }
   onAddNoteClose(value: Boolean) {
     this.showAddNoteComponent = false
+  }
+  onNoteSaved(value: Boolean) {
+    this.showAddNoteComponent = false
+    this.fetchUserNotes(this.headers)
   }
 }

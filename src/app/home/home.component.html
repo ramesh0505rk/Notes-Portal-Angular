@@ -1,5 +1,5 @@
 <div class="home-container" (click)="closeSuggestions($event)">
-    <app-add-note class="add-note-container" (closeAddNote)="onAddNoteClose($event)"
+    <app-add-note class="add-note-container" (noteSaved)="onNoteSaved($event)" (closeAddNote)="onAddNoteClose($event)"
         *ngIf="showAddNoteComponent"></app-add-note>
     <div class="navs d-flex flex-row">
         <span class="logo-container">

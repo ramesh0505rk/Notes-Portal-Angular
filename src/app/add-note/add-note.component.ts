@@ -20,6 +20,7 @@ export class AddNoteComponent implements OnInit {
   userId: string = ''
 
   @Output() closeAddNote = new EventEmitter<Boolean>()
+  @Output() noteSaved = new EventEmitter<Boolean>()
 
   constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private notesService: NotesService) {
     this.noteForm = new FormGroup({
@@ -41,8 +42,8 @@ export class AddNoteComponent implements OnInit {
   onSaveNote() {
     const { title, content } = this.noteForm.value
     try {
-      this.notesService.addNote(this.userId,title,content).subscribe(result=>{
-        
+      this.notesService.addNote(this.userId, title, content).subscribe(result => {
+        this.noteSaved.emit(true)
       })
     }
     catch (e) {

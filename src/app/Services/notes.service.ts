@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class NotesService {
 
-  graphQLApiBaseUrl = 'https://localhost:44354/api/graphql'
+  graphQLApiBaseUrl = 'https://localhost:44354/graphql/'
 
   constructor(private readonly http: HttpClient) { }
 
   addNote(userId: string, title: string, content: string): Observable<any> {
     const query = `mutation{
-      addNote(userId:${userId},title:${title},content:${content}){
+      addNote(userId:"${userId}",title:"${title}",content:"${content}"){
         noteId
       }
     }`
