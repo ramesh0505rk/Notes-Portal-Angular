@@ -12,7 +12,8 @@
 
 .form-container {
     width: 100%;
-    gap: 10px;
+    gap: 5px;
+    // background-color: rebeccapurple;
 }
 
 .close-icon {
@@ -49,7 +50,7 @@
 }
 
 #i-content {
-    height: 60%;
+    height: 100%;
 }
 
 .save-btn {
@@ -74,4 +75,18 @@
 
 .btn-container {
     justify-content: end;
+}
+
+.content-container {
+    // background-color: red;
+    height: 100%;
+}
+
+.error {
+    color: #ff0000;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }

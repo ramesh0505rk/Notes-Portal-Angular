@@ -2,12 +2,24 @@
     <span (click)="onClose()" class="close-icon">
         <img src="assets/x-close.svg" />
     </span>
-    <form class="form-container d-flex flex-column">
-        <label>Title</label>
-        <input id="i-title" type="text" placeholder="Give a title for your note." />
-        <label>Note</label>
-        <textarea style="resize: none;" id="i-content" placeholder="Write down your note here."></textarea>
-        <div (click)="onSaveNote()" class="btn-container d-flex">
+    <form [formGroup]="noteForm" class="form-container d-flex flex-column">
+        <div class="title-container d-flex flex-column">
+            <label>Title</label>
+            <input id="i-title" type="text" formControlName="title" maxlength="40"
+                placeholder="Give a title for your note." />
+            <div *ngIf="noteForm.get('title')?.invalid && noteForm.get('title')?.touched" class="error">
+                <small>⚠️Enter a title.</small>
+            </div>
+        </div>
+        <div class="content-container d-flex flex-column">
+            <label>Note</label>
+            <textarea style="resize: none;" id="i-content" formControlName="content"
+                placeholder="Write down your note here."></textarea>
+            <div *ngIf="noteForm.get('content')?.invalid && noteForm.get('content')?.touched" class="error">
+                <small>⚠️Enter a note.</small>
+            </div>
+        </div>
+        <div (click)="onSaveNote()" [class.disabled]="noteForm.invalid" class="btn-container d-flex">
             <span class="save-btn">Save</span>
         </div>
     </form>
