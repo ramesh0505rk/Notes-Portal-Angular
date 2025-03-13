@@ -121,4 +121,13 @@ export class HomeComponent implements OnInit {
     this.showAddNoteComponent = false
     this.fetchUserNotes(this.headers)
   }
+  showTrashIcon(index: number) {
+    this.notes[index].showTrash = true
+  }
+  hideTrashIcon(index: number) {
+    this.notes[index].showTrash = false
+  }
+  deleteNote(index: number) {
+
+  }
 }
