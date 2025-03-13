@@ -128,6 +128,12 @@ export class HomeComponent implements OnInit {
     this.notes[index].showTrash = false
   }
   deleteNote(index: number) {
-
+    const noteId = this.notes[index].noteId;
+    this.http.delete(`${this.apiBaseUrl}/notes/${noteId}`, { headers: this.headers }).subscribe({
+      next: () => {
+        this.notes.splice(index, 1)
+      },
+      error: (err) => console.error('Error deleting note: ', err)
+    })
   }
 }
