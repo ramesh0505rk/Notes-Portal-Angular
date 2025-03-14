@@ -3,7 +3,6 @@
 
 .logo-container {
     width: 6%;
-    // background-color: rebeccapurple;
 }
 
 .home-container {
@@ -29,6 +28,9 @@
     cursor: pointer;
     font-family: 'Lobster';
     color: $font-color;
+    width: max-content;
+    background-color: $primary-bg-color;
+    border-radius: 0px 8px 8px 0px;
     margin: 0;
 }
 
