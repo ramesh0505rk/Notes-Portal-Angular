@@ -26,15 +26,18 @@
     <div *ngIf="showSuggestions || showAddNoteComponent" [ngClass]="{'overlayIndexUpdate':showAddNoteComponent}"
         class="overlay"></div>
     <div class="notes-container">
-        <div class="row">
+        <div class="row notes-container-inner">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let note of notes;let i=index">
                 <div class="note-card" (mouseenter)="showTrashIcon(i)" (mouseleave)="hideTrashIcon(i)">
                     <div class="note-card-inner">
                         <h4>{{ note.title }}</h4>
                         <p>{{ note.content }}</p>
-                        <span class="trash-icon" *ngIf="note.showTrash" (click)="deleteNote(i)">
+                        <div class="trash-icon" [ngClass]="{'visible':note.showTrash}" (click)="deleteNote(i)">
                             <img src="assets/bin.svg">
-                        </span>
+                        </div>
+                        <small class="time-stamp">
+                            {{note.createdDate | date:'MMM d, y h:mm a'}}
+                        </small>
                     </div>
                 </div>
             </div>

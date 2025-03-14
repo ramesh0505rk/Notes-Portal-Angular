@@ -17,7 +17,7 @@
 }
 
 .add-note-container {
-    position: absolute;
+    position: fixed;
     width: 50%;
     height: 60%;
     top: 20%;
@@ -33,7 +33,7 @@
 }
 
 .navs {
-    position: relative;
+    position: fixed;
     width: 100%;
     margin-top: 12px;
     padding: 0px 30px;
@@ -44,6 +44,8 @@
 
 .search-container {
     width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 0px 0px 2px $primary-bg-color;
 }
 
 .profile-container {
@@ -56,6 +58,7 @@
     background-color: rgb(255, 255, 255);
     cursor: pointer;
     transition: border 0.3s ease-in-out;
+    box-shadow: 0 0px 0px 2px $primary-bg-color;
 
     &:hover {
         border: 1px solid $font-color;
@@ -105,7 +108,7 @@
 }
 
 .write-icon {
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     right: 30px;
     background-color: $sm-li-bg;
@@ -127,9 +130,15 @@
 }
 
 .notes-container {
+    // background-color: rebeccapurple;
+    overflow: auto;
     width: 100%;
     height: 100%;
     padding: 30px;
+}
+.notes-container-inner{
+    margin-top: 38px;
+    // background-color: yellow;
 }
 
 .note-card {
@@ -150,21 +159,9 @@
         transform: scale(1.02);
         box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
     }
-
-    /* Blurry fade effect */
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 30px;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%);
-        pointer-events: none;
-    }
 }
 
-.note-card .trash-icon {
+.trash-icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -178,21 +175,27 @@
     border-radius: 30px;
     box-shadow: none;
     opacity: 0;
-
-    transition: opacity 0.3s ease-in-out,background-color 0.3s ease-in-out;
+    padding: 0px;
+    box-shadow: 0 0px 0px 1px transparent;
+    transform: translateX(2rem);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
     img {
-        width: 15px;
-        height: 15px;
+        width: 18px;
+        height: 18px;
+
+        transition: transform 0.3s ease-in-out;
     }
 
-    &:hover {
-        background-color: $primary-bg-color;
-    }
 }
 
-.note-card:hover .trash-icon {
+.trash-icon.visible {
     opacity: 1;
+    transform: translateX(0rem);
+
+    img:hover {
+        transform: scale(1.4);
+    }
 }
 
 .note-card-inner {
@@ -200,8 +203,29 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 85%;
     transition: transform 0.3s ease-in-out;
     overflow: hidden;
     text-align: justify;
+    // background-color: rebeccapurple;
+}
+
+.time-stamp {
+    position: absolute;
+    background-color: $sm-li-bg;
+    padding: 2px;
+    bottom: 4px;
+    right: 4px;
+    font-weight: 600;
+    z-index: 10;
+    border-radius: 4px;
+    font-size: 11px;
+    color: white;
+    box-shadow: 0 0px 0px 1px transparent;
+
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.note-card:hover .time-stamp {
+    color: $font-color;
 }
