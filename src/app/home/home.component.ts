@@ -29,6 +29,10 @@ export class HomeComponent implements OnInit {
   apiBaseUrl = 'https://localhost:44354/api'
   notes: any[] = []
   showAddNoteComponent: boolean = false
+  cAction = ''
+  cTitle = ''
+  cContent = ''
+  cNoteId: any
 
   constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router, private http: HttpClient) { }
 
@@ -112,6 +116,10 @@ export class HomeComponent implements OnInit {
   }
 
   onAddNoteClick() {
+    this.cAction = 'save'
+    this.cTitle = ''
+    this.cContent = ''
+    this.cNoteId = null
     this.showAddNoteComponent = true
   }
   onAddNoteClose(value: Boolean) {
@@ -127,7 +135,8 @@ export class HomeComponent implements OnInit {
   hideTrashIcon(index: number) {
     this.notes[index].showTrash = false
   }
-  deleteNote(index: number) {
+  deleteNote(index: number, event: Event) {
+    event.stopPropagation()
     const noteId = this.notes[index].noteId;
     this.http.delete(`${this.apiBaseUrl}/notes/${noteId}`, { headers: this.headers }).subscribe({
       next: () => {
@@ -135,5 +144,12 @@ export class HomeComponent implements OnInit {
       },
       error: (err) => console.error('Error deleting note: ', err)
     })
+  }
+  onEditNoteClick(index: number) {
+    this.cAction = 'update'
+    this.cTitle = this.notes[index].title
+    this.cContent = this.notes[index].content
+    this.cNoteId = this.notes[index].noteId
+    this.showAddNoteComponent = true
   }
 }

@@ -1,9 +1,10 @@
 <div class="home-container" (click)="closeSuggestions($event)">
-    <app-add-note class="add-note-container" (noteSaved)="onNoteSaved($event)" (closeAddNote)="onAddNoteClose($event)"
+    <app-add-note class="add-note-container" [noteId]="cNoteId" [title]="cTitle" [content]="cContent" [action]="cAction"
+        (noteSaved)="onNoteSaved($event)" (closeAddNote)="onAddNoteClose($event)"
         *ngIf="showAddNoteComponent"></app-add-note>
     <div class="navs d-flex flex-row">
         <span class="logo-container">
-            <h2 (click)="onLogoClick()" class="m-logo">Notes.</h2>
+            <h2 (click)="onLogoClick()" class="m-logo" [ngClass]="{'remove-m-logo-bg': showSuggestions}">Notes.</h2>
         </span>
         <div class="search-container" (click)="$event.stopPropagation()">
             <app-search (searchChange)="updateSearchQuery($event)"
@@ -20,7 +21,7 @@
             </div>
         </div>
         <div class="suggestions-container" [ngClass]="{'show': showSuggestions}" (click)="$event.stopPropagation()">
-            <app-suggestions [searchTerm]="searchQuery"></app-suggestions>
+            <app-suggestions [userId]="userId" [searchTerm]="searchQuery"></app-suggestions>
         </div>
     </div>
     <div *ngIf="showSuggestions || showAddNoteComponent" [ngClass]="{'overlayIndexUpdate':showAddNoteComponent}"
@@ -28,11 +29,12 @@
     <div class="notes-container">
         <div class="row notes-container-inner">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let note of notes;let i=index">
-                <div class="note-card" (mouseenter)="showTrashIcon(i)" (mouseleave)="hideTrashIcon(i)">
+                <div class="note-card" (click)="onEditNoteClick(i)" (mouseenter)="showTrashIcon(i)"
+                    (mouseleave)="hideTrashIcon(i)">
                     <div class="note-card-inner">
                         <h4>{{ note.title }}</h4>
                         <p>{{ note.content }}</p>
-                        <div class="trash-icon" [ngClass]="{'visible':note.showTrash}" (click)="deleteNote(i)">
+                        <div class="trash-icon" [ngClass]="{'visible':note.showTrash}" (click)="deleteNote(i,$event)">
                             <img src="assets/bin.svg">
                         </div>
                         <small class="time-stamp">

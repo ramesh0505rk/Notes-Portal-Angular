@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotesService } from '../Services/notes.service';
 import { OKTA_AUTH } from '@okta/okta-angular';
@@ -12,12 +12,17 @@ import OktaAuth from '@okta/okta-auth-js';
   templateUrl: './add-note.component.html',
   styleUrl: './add-note.component.scss'
 })
-export class AddNoteComponent implements OnInit {
+export class AddNoteComponent implements OnInit, OnChanges {
 
   noteForm: FormGroup
   isAuthenticated: Boolean = false
   user: any
   userId: string = ''
+
+  @Input() title: string = ''
+  @Input() content: string = ''
+  @Input() noteId: any
+  @Input() action: string = ''
 
   @Output() closeAddNote = new EventEmitter<Boolean>()
   @Output() noteSaved = new EventEmitter<Boolean>()
@@ -35,6 +40,14 @@ export class AddNoteComponent implements OnInit {
       this.userId = this.user.sub
     }
   }
+  async ngOnChanges(changes: SimpleChanges) {
+    if (changes['title'] || changes['content']) {
+      this.noteForm.patchValue({
+        title: this.title,
+        content: this.content
+      })
+    }
+  }
 
   onClose() {
     this.closeAddNote.emit(true)
@@ -43,6 +56,21 @@ export class AddNoteComponent implements OnInit {
     const { title, content } = this.noteForm.value
     try {
       this.notesService.addNote(this.userId, title, content).subscribe(result => {
+        this.noteSaved.emit(true)
+      })
+    }
+    catch (e) {
+      console.error(e)
+    }
+  }
+  onUpdateNote() {
+    const { title, content } = this.noteForm.value
+
+    console.log(title, ' ', content, ' ', this.noteId)
+
+    try {
+      this.notesService.updateNote(this.noteId, title, content).subscribe(result => {
+        console.log(result)
         this.noteSaved.emit(true)
       })
     }

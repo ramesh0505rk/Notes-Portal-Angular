@@ -19,7 +19,8 @@
                 <small>⚠️Enter a note.</small>
             </div>
         </div>
-        <div (click)="onSaveNote()" [class.disabled]="noteForm.invalid" class="btn-container d-flex">
+        <div (click)="action==='save'? onSaveNote():onUpdateNote()" [class.disabled]="noteForm.invalid"
+            class="btn-container d-flex">
             <span class="save-btn">Save</span>
         </div>
     </form>

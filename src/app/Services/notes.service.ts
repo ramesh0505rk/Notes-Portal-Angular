@@ -20,4 +20,22 @@ export class NotesService {
 
     return this.http.post(this.graphQLApiBaseUrl, { query })
   }
+  updateNote(noteId: any, title: string, content: string): Observable<any> {
+    const query = `mutation{
+      updateNote(noteId:"${noteId}",title:"${title}",content:"${content}"){
+        title
+        content
+        createdDate
+      }
+    }`
+    return this.http.post(this.graphQLApiBaseUrl, { query })
+  }
+  getNoteTitle(userId: string): Observable<any> {
+    const query = `query{
+      noteTitles(userId:"${userId}"){
+        title
+      }
+    }`
+    return this.http.post(this.graphQLApiBaseUrl, { query })
+  }
 }
