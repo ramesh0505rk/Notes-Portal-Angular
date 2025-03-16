@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { OKTA_AUTH } from '@okta/okta-angular';
 import OktaAuth from '@okta/okta-auth-js';
 import { config } from '../okta-config';
@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { SuggestionsComponent } from "../suggestions/suggestions.component";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AddNoteComponent } from '../add-note/add-note.component';
+import { NotesService } from '../Services/notes.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -33,8 +35,11 @@ export class HomeComponent implements OnInit {
   cTitle = ''
   cContent = ''
   cNoteId: any
+  searchedItem = ''
+  hideAddNote: boolean = false
+  noteAdded: boolean = false;
 
-  constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router, private http: HttpClient) { }
+  constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router, private http: HttpClient, private notesService: NotesService, private cdr: ChangeDetectorRef) { }
 
   headers: any
 
@@ -94,6 +99,11 @@ export class HomeComponent implements OnInit {
       error: (err) => console.error('Error fetching notes: ', err)
     })
   }
+  fetchUserNotesBySearchedItem(title: string) {
+    this.notesService.getNotesByTitle(title, this.userId).subscribe(result => {
+      this.notes = result.data.notesByTitle
+    })
+  }
 
   async logOut() {
     localStorage.clear()
@@ -113,6 +123,11 @@ export class HomeComponent implements OnInit {
   updateSearchQuery(query: string) {
     this.searchQuery = query;
     this.showSuggestions = query.length > 0;
+    if (query == '' && this.userId != '') {
+      this.fetchUserNotes(this.headers)
+      this.searchedItem = ''
+      this.hideAddNote = false
+    }
   }
 
   onAddNoteClick() {
@@ -127,7 +142,12 @@ export class HomeComponent implements OnInit {
   }
   onNoteSaved(value: Boolean) {
     this.showAddNoteComponent = false
-    this.fetchUserNotes(this.headers)
+    if (this.searchedItem != '')
+      this.fetchUserNotesBySearchedItem(this.searchedItem)
+    else {
+      this.fetchUserNotes(this.headers)
+      this.noteAdded = true
+    }
   }
   showTrashIcon(index: number) {
     this.notes[index].showTrash = true
@@ -141,6 +161,7 @@ export class HomeComponent implements OnInit {
     this.http.delete(`${this.apiBaseUrl}/notes/${noteId}`, { headers: this.headers }).subscribe({
       next: () => {
         this.notes.splice(index, 1)
+        this.noteAdded = true
       },
       error: (err) => console.error('Error deleting note: ', err)
     })
@@ -151,5 +172,13 @@ export class HomeComponent implements OnInit {
     this.cContent = this.notes[index].content
     this.cNoteId = this.notes[index].noteId
     this.showAddNoteComponent = true
+  }
+  onGetSearchedItem(event: string) {
+    this.searchedItem = event
+    this.cdr.detectChanges()
+    this.showSuggestions = false;
+    this.fetchUserNotesBySearchedItem(this.searchedItem)
+    this.hideAddNote = true
+    console.log(this.hideAddNote)
   }
 }

@@ -11,6 +11,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class SearchComponent {
 
+  private _searchedItem = ''
+  @Input()
+  set searchedItem(value: string) {
+    this._searchedItem = value
+    this.searchQuery = value
+    this.onSearchChange()
+  }
+  get searchedItem(): string {
+    return this._searchedItem
+  }
+
   @Output() isSearchOnClick = new EventEmitter<boolean>()
   @Output() searchChange = new EventEmitter<string>()
   searchQuery: string = ''

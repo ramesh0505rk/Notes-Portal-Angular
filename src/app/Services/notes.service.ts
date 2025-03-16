@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,18 @@ export class NotesService {
     const query = `query{
       noteTitles(userId:"${userId}"){
         title
+      }
+    }`
+    return this.http.post(this.graphQLApiBaseUrl, { query })
+  }
+  getNotesByTitle(title: string, userId: string): Observable<any> {
+    const query = `query{
+      notesByTitle(title:"${title}",userId:"${userId}"){
+        noteId
+        userId
+        title
+        content
+        createdDate
       }
     }`
     return this.http.post(this.graphQLApiBaseUrl, { query })

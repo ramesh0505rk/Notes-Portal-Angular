@@ -7,7 +7,7 @@
             <h2 (click)="onLogoClick()" class="m-logo" [ngClass]="{'remove-m-logo-bg': showSuggestions}">Notes.</h2>
         </span>
         <div class="search-container" (click)="$event.stopPropagation()">
-            <app-search (searchChange)="updateSearchQuery($event)"
+            <app-search [searchedItem]="searchedItem" (searchChange)="updateSearchQuery($event)"
                 (isSearchOnClick)="canShowSuggestion($event)"></app-search>
         </div>
         <div class="has-submenu" (click)="$event.stopPropagation()">
@@ -21,7 +21,17 @@
             </div>
         </div>
         <div class="suggestions-container" [ngClass]="{'show': showSuggestions}" (click)="$event.stopPropagation()">
-            <app-suggestions [userId]="userId" [searchTerm]="searchQuery"></app-suggestions>
+            <app-suggestions *ngIf="showSuggestions" [refreshSuggestion]="noteAdded"
+                (searchedItem)="onGetSearchedItem($event)" [userId]="userId"
+                [searchTerm]="searchQuery"></app-suggestions>
+            <div class="creator-container d-flex flex-column ">
+                <span>
+                    Crafted by
+                </span>
+                <span class="c-name">
+                    ramz
+                </span>
+            </div>
         </div>
     </div>
     <div *ngIf="showSuggestions || showAddNoteComponent" [ngClass]="{'overlayIndexUpdate':showAddNoteComponent}"
@@ -45,7 +55,7 @@
             </div>
         </div>
     </div>
-    <span (click)="onAddNoteClick()" class="write-icon d-flex">
+    <span (click)="onAddNoteClick()" [class.disabled]="hideAddNote" class="write-icon d-flex">
         <img src="assets/write.svg" />
     </span>
 </div>

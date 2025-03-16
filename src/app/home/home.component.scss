@@ -33,7 +33,8 @@
     border-radius: 0px 8px 8px 0px;
     margin: 0;
 }
-.remove-m-logo-bg{
+
+.remove-m-logo-bg {
     background-color: transparent;
 }
 
@@ -97,6 +98,22 @@
     }
 }
 
+.creator-container {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    line-height: 1rem;
+    justify-content: end;
+}
+
+.c-name {
+    font-family: 'Lobster';
+    font-size: 2rem;
+    padding: 0px;
+    display: flex;
+    justify-content: end;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -141,7 +158,8 @@
     height: 100%;
     padding: 30px;
 }
-.notes-container-inner{
+
+.notes-container-inner {
     margin-top: 38px;
     // background-color: yellow;
 }
@@ -233,4 +251,9 @@
 
 .note-card:hover .time-stamp {
     color: $font-color;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NotesService } from '../Services/notes.service';
 
 interface Note {
@@ -20,6 +20,10 @@ interface NotesResponse {
   styleUrl: './suggestions.component.scss'
 })
 export class SuggestionsComponent {
+
+  @Output() searchedItem = new EventEmitter<string>()
+  @Input() refreshSuggestion: boolean = false
+
   private _userId = ''
   @Input()
   set userId(value: string) {
@@ -28,13 +32,13 @@ export class SuggestionsComponent {
       this.fetchSuggestions();
     }
   }
-
   get userId(): string {
     return this._userId;
   }
 
   @Input() searchTerm: string = ''
   suggestions: string[] = []
+  match: string[] = []
 
   constructor(private notesService: NotesService) { }
 
@@ -54,5 +58,9 @@ export class SuggestionsComponent {
       const match = suggestion.toLowerCase().includes(this.searchTerm.toLocaleLowerCase())
       return match
     })
+  }
+  onSearchItemClicked(index: number) {
+    console.log(this.filteredSuggestions[index])
+    this.searchedItem.emit(this.filteredSuggestions[index])
   }
 }

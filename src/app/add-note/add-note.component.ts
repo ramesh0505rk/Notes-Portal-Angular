@@ -54,8 +54,9 @@ export class AddNoteComponent implements OnInit, OnChanges {
   }
   onSaveNote() {
     const { title, content } = this.noteForm.value
+    const escapedContent = content.replace(/\n/g, '\\n');
     try {
-      this.notesService.addNote(this.userId, title, content).subscribe(result => {
+      this.notesService.addNote(this.userId, title, escapedContent).subscribe(result => {
         this.noteSaved.emit(true)
       })
     }
@@ -65,11 +66,11 @@ export class AddNoteComponent implements OnInit, OnChanges {
   }
   onUpdateNote() {
     const { title, content } = this.noteForm.value
-
+    const escapedContent = content.replace(/\n/g, '\\n');
     console.log(title, ' ', content, ' ', this.noteId)
 
     try {
-      this.notesService.updateNote(this.noteId, title, content).subscribe(result => {
+      this.notesService.updateNote(this.noteId, title, escapedContent).subscribe(result => {
         console.log(result)
         this.noteSaved.emit(true)
       })
