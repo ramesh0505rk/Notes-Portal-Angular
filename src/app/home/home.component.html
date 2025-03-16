@@ -2,6 +2,9 @@
     <app-add-note class="add-note-container" [noteId]="cNoteId" [title]="cTitle" [content]="cContent" [action]="cAction"
         (noteSaved)="onNoteSaved($event)" (closeAddNote)="onAddNoteClose($event)"
         *ngIf="showAddNoteComponent"></app-add-note>
+    <app-profile *ngIf="showProfile" (closeProfile)="onCloseProfile($event)" [userId]="userId" [userName]="userName"
+        [userEmail]="userEmail" class="user-profile-container"></app-profile>
+    <app-help *ngIf="showHelp" (closeHelp)="onCloseHelp($event)" class="help-container"></app-help>
     <div class="navs d-flex flex-row">
         <span class="logo-container">
             <h2 (click)="onLogoClick()" class="m-logo" [ngClass]="{'remove-m-logo-bg': showSuggestions}">Notes.</h2>
@@ -14,8 +17,8 @@
             <div class="profile-container d-flex">
                 <span class="profile">{{profileImg}}</span>
                 <ul>
-                    <li><a>Profile</a></li>
-                    <li><a href="#">Help</a></li>
+                    <li><a (click)="onClickProfile()">Profile</a></li>
+                    <li><a (click)="onHelpClick()">About</a></li>
                     <li><a (click)="logOut()">Sign out</a></li>
                 </ul>
             </div>
@@ -25,17 +28,13 @@
                 (searchedItem)="onGetSearchedItem($event)" [userId]="userId"
                 [searchTerm]="searchQuery"></app-suggestions>
             <div class="creator-container d-flex flex-column ">
-                <span>
-                    Crafted by
-                </span>
-                <span class="c-name">
-                    ramz
-                </span>
+                <span>Crafted by</span>
+                <span class="c-name">ramz✌️</span>
             </div>
         </div>
     </div>
-    <div *ngIf="showSuggestions || showAddNoteComponent" [ngClass]="{'overlayIndexUpdate':showAddNoteComponent}"
-        class="overlay"></div>
+    <div *ngIf="showSuggestions || showAddNoteComponent || showProfile || showHelp"
+        [ngClass]="{'overlayIndexUpdate':showAddNoteComponent || showProfile || showHelp}" class="overlay"></div>
     <div class="notes-container">
         <div class="row notes-container-inner">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let note of notes;let i=index">

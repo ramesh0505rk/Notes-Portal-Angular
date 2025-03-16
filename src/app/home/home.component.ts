@@ -11,11 +11,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AddNoteComponent } from '../add-note/add-note.component';
 import { NotesService } from '../Services/notes.service';
 import { BehaviorSubject } from 'rxjs';
+import { ProfileComponent } from "../profile/profile.component";
+import { HelpComponent } from "../help/help.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SearchComponent, CommonModule, FormsModule, SuggestionsComponent, AddNoteComponent],
+  imports: [SearchComponent, CommonModule, FormsModule, SuggestionsComponent, AddNoteComponent, ProfileComponent, HelpComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -37,7 +39,9 @@ export class HomeComponent implements OnInit {
   cNoteId: any
   searchedItem = ''
   hideAddNote: boolean = false
-  noteAdded: boolean = false;
+  noteAdded: boolean = false
+  showProfile: boolean = false
+  showHelp: boolean = false
 
   constructor(@Inject(OKTA_AUTH) private readonly oktaAuth: OktaAuth, private router: Router, private http: HttpClient, private notesService: NotesService, private cdr: ChangeDetectorRef) { }
 
@@ -180,5 +184,17 @@ export class HomeComponent implements OnInit {
     this.fetchUserNotesBySearchedItem(this.searchedItem)
     this.hideAddNote = true
     console.log(this.hideAddNote)
+  }
+  onClickProfile() {
+    this.showProfile = true
+  }
+  onCloseProfile(event: boolean) {
+    this.showProfile = event
+  }
+  onHelpClick() {
+    this.showHelp = true
+  }
+  onCloseHelp(event: boolean) {
+    this.showHelp = event
   }
 }

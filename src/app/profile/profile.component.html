@@ -1,0 +1,20 @@
+<div class="profile-container d-flex flex-column">
+    <div class="user-detail-container" >
+        <label>User name,</label>
+        <div class="username">{{userName}}</div>
+    </div>
+    <div class="user-detail-container">
+        <label>Email,</label>
+        <div class="email">{{userEmail}}</div>
+    </div>
+    <div class="user-detail-container">
+        <label>Total notes,</label>
+        <div class="email">{{notesCount}}</div>
+    </div>
+    <span (click)="onClose()" class="close-icon">
+        <img src="assets/x-close.svg" />
+    </span>
+    <div class="prof-container">
+        <span class="prof">Profile</span>
+    </div>
+</div>
