@@ -23,7 +23,9 @@
     right: 25%;
     z-index: 12;
 }
-.user-profile-container,.help-container{
+
+.user-profile-container,
+.help-container {
     position: fixed;
     width: 50%;
     height: 50%;
@@ -89,7 +91,7 @@
     inset: 0;
     margin: 0 18px;
     height: 22rem;
-    background-color: #EDEDED;
+    background-color: $sugg-bg;
     border-radius: 8px;
     box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1);
     z-index: -1;
@@ -160,7 +162,6 @@
 }
 
 .notes-container {
-    // background-color: rebeccapurple;
     overflow: auto;
     width: 100%;
     height: 100%;
@@ -169,7 +170,6 @@
 
 .notes-container-inner {
     margin-top: 38px;
-    // background-color: yellow;
 }
 
 .note-card {
@@ -238,7 +238,6 @@
     transition: transform 0.3s ease-in-out;
     overflow: hidden;
     text-align: justify;
-    // background-color: rebeccapurple;
 }
 
 .time-stamp {

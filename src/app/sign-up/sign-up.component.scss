@@ -6,7 +6,7 @@
     height: 100vh;
     background-color: $primary-bg-color;
     margin-top: 0px;
-    font-family: 'Quicksand';
+    font-family: $fn-Quicksand;
 }
 
 .dark-mode-container {
@@ -17,7 +17,7 @@
 }
 
 .m-logo {
-    font-family: 'Lobster';
+    font-family: $fn-Lobster;
     color: $font-color;
     margin: 0;
 }
@@ -91,7 +91,7 @@
 
 .signin-btn {
     cursor: pointer;
-    color: #4285f4;
+    color: $sign-in-up-color;
     text-decoration: none;
 
     &:hover {
@@ -122,5 +122,5 @@
 }
 
 .error{
-    color: #ff0000;
+    color: $err-font-color;
   }

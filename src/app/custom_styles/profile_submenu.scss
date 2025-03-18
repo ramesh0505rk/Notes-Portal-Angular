@@ -6,7 +6,6 @@
     display: flex;
     align-items: center;
     width: 6%;
-    // background-color: yellow;
     justify-content: right;
 }
 
@@ -18,7 +17,7 @@
 }
 
 .has-submenu ul a {
-    color: #A1A2A3;
+    color: $sub-anchor-color;
     cursor: pointer;
     display: flex;
     justify-content: space-between;

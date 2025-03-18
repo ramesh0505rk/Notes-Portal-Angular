@@ -30,7 +30,7 @@
 }
 
 .m-logo {
-  font-family: 'Lobster';
+  font-family: $fn-Lobster;
   color: #241F1F;
   margin: 0;
 }
@@ -46,7 +46,7 @@
   background-color: $primary-bg-color;
   // margin-top: 0px;
   color: $font-color;
-  font-family: 'Quicksand';
+  font-family: $fn-Quicksand;
 }
 
 .dark-mode-container {
@@ -59,13 +59,13 @@
 .google-signin,
 .login-btn,
 .signup-btn {
-  font-family: 'Quicksand';
+  font-family: $fn-Quicksand;
 }
 
 .ic {
   width: 25%;
   padding: 20px 20px;
-  background: #CDCED2;
+  background: $widget-color;
   opacity: 0.8;
   border-radius: 15px;
 }
@@ -92,7 +92,6 @@
 #i-password:focus {
   box-shadow: 0 0 0px 2px $i-focus;
 }
-//rgb(157, 157, 243)
 
 .g-signin-container {
   padding: 8px 0px;
@@ -117,7 +116,7 @@
 
 .signup-btn {
   cursor: pointer;
-  color: #4285f4;
+  color: $sign-in-up-color;
   text-decoration: none;
 
   &:hover {
@@ -148,5 +147,5 @@
 }
 
 .error{
-  color: #ff0000;
+  color: $err-font-color;
 }
