@@ -57,7 +57,7 @@
     padding: 10px;
     border: 1px solid #6E32EF;
     color: white;
-    width: 12%;
+    width: 25%;
     justify-content: center;
     border-radius: 4px;
     background-color: #6E32EF;
@@ -87,3 +87,8 @@
     opacity: 0.5;
     pointer-events: none;
 }
+// @media(max-width:600px){
+//     .save-btn{
+//         width: 25%;
+//     }
+// }

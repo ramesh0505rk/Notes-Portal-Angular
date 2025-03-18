@@ -121,6 +121,17 @@
     color: $eye-color;
 }
 
-.error{
+.error {
     color: $err-font-color;
-  }
+}
+
+@media(max-width:430px) {
+    .ic {
+        width: 80%;
+    }
+}
+@media (min-width: 540px) and (max-width: 1280px){
+    .ic {
+        width: 70%;
+    }
+}

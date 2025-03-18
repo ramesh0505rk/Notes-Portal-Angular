@@ -39,7 +39,7 @@
         <div class="row notes-container-inner">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let note of notes;let i=index">
                 <div class="note-card" (click)="onEditNoteClick(i)" (mouseenter)="showTrashIcon(i)"
-                    (mouseleave)="hideTrashIcon(i)">
+                    (mouseleave)="hideTrashIcon(i)" (touchstart)="showTrashIcon(i)" (touchend)="hideTrashIcon(i)">
                     <div class="note-card-inner">
                         <h4>{{ note.title }}</h4>
                         <p>{{ note.content }}</p>
