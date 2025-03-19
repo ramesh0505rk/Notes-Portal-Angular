@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OKTA_AUTH } from '@okta/okta-angular';
 import OktaAuth from '@okta/okta-auth-js';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { GetTokenResponseService } from '../get-token-response.service';
 import { config } from '../okta-config';
 import { Router } from '@angular/router';
@@ -46,10 +46,8 @@ export class SignUpComponent {
       }
 
       this.activationToken = await this.getTokenResponses.getActivationToken(userProfile).toPromise()
-      console.log('activation token ', this.activationToken.activationToken)
 
       this.tokenResponses = await this.getTokenResponses.getSessionDetails(this.activationToken.activationToken).toPromise()
-      console.log('Session details,\n', this.tokenResponses)
 
       if (this.tokenResponses.status === 'SUCCESS') {
         await this.oktaAuth.token.getWithRedirect({
@@ -77,5 +75,4 @@ export class SignUpComponent {
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible
   }
-
 }

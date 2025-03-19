@@ -60,7 +60,7 @@ export class SuggestionsComponent {
     })
   }
   onSearchItemClicked(index: number) {
-    console.log(this.filteredSuggestions[index])
+    // console.log(this.filteredSuggestions[index])
     this.searchedItem.emit(this.filteredSuggestions[index])
   }
 }

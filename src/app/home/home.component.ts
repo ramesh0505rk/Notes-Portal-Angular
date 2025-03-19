@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
       this.userEmail = user.email ?? ''
       this.userId = user.sub ?? ''
       this.profileImg = this.userName[0].toLowerCase()
-      console.log(config.clientId, ' ', this.userEmail, ' ', this.userId, ' ', this.userName)
+      // console.log(config.clientId, ' ', this.userEmail, ' ', this.userId, ' ', this.userName)
 
       const token = await this.oktaAuth.getAccessToken()
       this.headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
   checkUserExists(headers: HttpHeaders) {
     this.http.get(`${this.apiBaseUrl}/users/${this.userId}`, { headers }).subscribe({
       next: (res) => {
-        console.log(res)
+        // console.log(res)
         this.fetchUserNotes(headers)
       },
       error: () => this.createUser(headers)
@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
     this.http.get(`${this.apiBaseUrl}/notes/${this.userId}`, { headers }).subscribe({
       next: (notes: any) => {
         this.notes = notes ? notes : []
-        console.log(this.notes)
+        // console.log(this.notes)
       },
       error: (err) => console.error('Error fetching notes: ', err)
     })
@@ -183,7 +183,7 @@ export class HomeComponent implements OnInit {
     this.showSuggestions = false;
     this.fetchUserNotesBySearchedItem(this.searchedItem)
     this.hideAddNote = true
-    console.log(this.hideAddNote)
+    // console.log(this.hideAddNote)
   }
   onClickProfile() {
     this.showProfile = true

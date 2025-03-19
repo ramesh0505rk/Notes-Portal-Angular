@@ -67,11 +67,11 @@ export class AddNoteComponent implements OnInit, OnChanges {
   onUpdateNote() {
     const { title, content } = this.noteForm.value
     const escapedContent = content.replace(/\n/g, '\\n');
-    console.log(title, ' ', content, ' ', this.noteId)
+    // console.log(title, ' ', content, ' ', this.noteId)
 
     try {
       this.notesService.updateNote(this.noteId, title, escapedContent).subscribe(result => {
-        console.log(result)
+        // console.log(result)
         this.noteSaved.emit(true)
       })
     }
