@@ -10,11 +10,12 @@
     position: relative;
 }
 
-label{
+label {
     font-size: 1.5rem;
 }
-.user-detail-container{
-    width: 50%;
+
+.user-detail-container {
+    width: 60%;
     display: flex;
     justify-content: space-between;
 }
@@ -38,7 +39,7 @@ label{
     height: 25px;
 }
 
-.prof-container{
+.prof-container {
     position: absolute;
     bottom: 0.5rem;
     right: 1rem;
@@ -46,5 +47,20 @@ label{
     .prof {
         font-family: 'Lobster';
         font-size: 2rem;
+    }
+}
+
+@media (min-width:300px) and (max-width:1280px) {
+    label {
+        font-size: 1rem;
+    }
+
+    .username,
+    .email {
+        font-size: 1.1rem;
+    }
+
+    .user-detail-container {
+        width: 90%;
     }
 }

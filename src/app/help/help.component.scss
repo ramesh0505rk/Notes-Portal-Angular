@@ -14,7 +14,6 @@
 .help-container-inner {
     width: 60%;
     height: max-content;
-    // background-color: rebeccapurple;
     font-size: 1.5rem;
     text-align: justify;
 }
@@ -47,5 +46,20 @@
     .about {
         font-family: 'Lobster';
         font-size: 2rem;
+    }
+}
+
+@media (min-width:300px) and (max-width:1280px) {
+
+    .help-container-inner {
+        width: 90%;
+    }
+
+    .help-container-inner {
+        font-size: 1rem;
+    }
+
+    .quotes {
+        font-size: 1.5rem;
     }
 }
