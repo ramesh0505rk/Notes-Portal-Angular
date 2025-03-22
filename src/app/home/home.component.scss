@@ -86,29 +86,6 @@
     font-weight: 500;
 }
 
-.suggestions-container {
-    position: absolute;
-    inset: 0;
-    margin: 0 18px;
-    height: 22rem;
-    background-color: $sugg-bg;
-    border-radius: 8px;
-    box-shadow: 0 0px 6px rgba(0, 0, 0, 0.1);
-    z-index: -1;
-
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-2rem);
-
-    transition-property: opacity, visibility, transform;
-
-    &.show {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(-0.3rem);
-    }
-}
-
 .creator-container {
     position: absolute;
     bottom: 1rem;
@@ -203,22 +180,6 @@
     text-align: justify;
 
     transition-property: transform;
-}
-
-.time-stamp {
-    position: absolute;
-    background-color: $sm-li-bg;
-    padding: 2px;
-    bottom: 4px;
-    right: 4px;
-    font-weight: 600;
-    z-index: 10;
-    border-radius: 4px;
-    font-size: 11px;
-    color: white;
-    box-shadow: 0 0px 0px 1px transparent;
-
-    transition-property: box-shadow, background-color;
 }
 
 .note-card:hover .time-stamp {
