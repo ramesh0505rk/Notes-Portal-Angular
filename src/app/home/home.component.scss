@@ -73,8 +73,8 @@
     border: 1px solid transparent;
     background-color: rgb(255, 255, 255);
     cursor: pointer;
-    transition: border 0.3s ease-in-out;
     box-shadow: 0 0px 0px 2px $primary-bg-color;
+    transition-property: border;
 
     &:hover {
         border: 1px solid $font-color;
@@ -99,7 +99,8 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(-2rem);
-    transition: opacity 0.3s ease-in-out, visibility 0.2s ease-in-out, transform 0.3s ease-in-out;
+
+    transition-property: opacity, visibility, transform;
 
     &.show {
         opacity: 1;
@@ -147,7 +148,7 @@
     display: flex;
     box-shadow: 0 0px 4px transparent;
 
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition-property: box-shadow, transform;
 
     &:hover {
         transform: scale(1.02);
@@ -172,7 +173,7 @@
     padding: 0px;
     box-shadow: 0 0px 0px 1px transparent;
     transform: translateX(2rem);
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition-property: transform, opacity;
 
     img {
         width: 18px;
@@ -198,9 +199,10 @@
     align-items: center;
     width: 100%;
     height: 85%;
-    transition: transform 0.3s ease-in-out;
     overflow: hidden;
     text-align: justify;
+
+    transition-property: transform;
 }
 
 .time-stamp {
@@ -216,7 +218,7 @@
     color: white;
     box-shadow: 0 0px 0px 1px transparent;
 
-    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition-property: box-shadow, background-color;
 }
 
 .note-card:hover .time-stamp {
@@ -234,9 +236,20 @@
         width: 80%;
         right: 10%;
     }
+
     .user-profile-container,
     .help-container {
         width: 80%;
         right: 10%;
     }
+}
+
+.profile-container,
+.note-card,
+.trash-icon,
+.time-stamp,
+.note-card-inner,
+.suggestions-container {
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
 }
