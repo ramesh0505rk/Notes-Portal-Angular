@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
   async loginWithGoogle() {
     try {
       await this.oktaAuth.signInWithRedirect({
-        idp: '0oand6wrxbqW71FxW5d7' // Replace with actual IdP ID from Okta
+        idp: '0oand6wrxbqW71FxW5d7' //actual IdP ID from Okta
       });
     } catch (err) {
       this.errorMessage = `${err}`;
