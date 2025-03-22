@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 export const config = {
     clientId: '0oan3gfxq0oASwNwD5d7',
     issuer: 'https://dev-42709845.okta.com/oauth2/default',
-    redirectUri: 'http://localhost:4200/login/callback',
+    redirectUri: 'https://notes-orpin-one.vercel.app/login/callback',
     scopes: ['openid', 'profile', 'email'],
     pkce: true,
     onAuthRequired: (oktaAuth: OktaAuth, injector: Injector) => {
@@ -14,3 +14,5 @@ export const config = {
         navigationService.navigate(['/login']) // Redirect to your custom login component
     }
 }
+
+//http://localhost:4200/login/callback - dev
