@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   profileImg: string = ''
   showSuggestions: boolean = false
   searchQuery: string = ''
-  apiBaseUrl = 'https://localhost:44354/api'
+  apiBaseUrl = 'https://notesserverapi.azurewebsites.net/api'
   notes: any[] = []
   showAddNoteComponent: boolean = false
   cAction = ''

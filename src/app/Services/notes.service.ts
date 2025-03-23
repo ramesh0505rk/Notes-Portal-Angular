@@ -7,7 +7,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class NotesService {
 
-  graphQLApiBaseUrl = 'https://localhost:44354/graphql/'
+  graphQLApiBaseUrl = 'https://notesserverapi.azurewebsites.net/graphql/'
 
   constructor(private readonly http: HttpClient) { }
 
