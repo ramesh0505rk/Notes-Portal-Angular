@@ -10,7 +10,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  apiBaseUrl = 'https://localhost:44354/api'
+  apiBaseUrl = 'https://notesserverapi.azurewebsites.net/api'
 
   @Input() userName: string = ''
   @Input() userEmail: string = ''
